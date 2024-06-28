@@ -136,4 +136,8 @@ html{
     .form-container {
         margin: 50px 10px;
     }
+
+       section{
+        padding: 0 10px;
+    }
 }
