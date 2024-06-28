@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Win Rate Calculator</title>
+     <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+<body>
+    <section>
+        <div class="form-container">
+            <form id="winRateForm">
+                <label for="desiredWinRate">Desired Win Rate (%)</label>
+                <input id="desiredWinRate" type="number" required step="any" placeholder="Desired Win Rate">
+                <label for="currentWinRate">Current Win Rate (%)</label>
+                <input id="currentWinRate" type="number" required step="any" placeholder="Current Win Rate">
+                <label for="totalGamesPlayed">Number of Games Played</label>
+                <input id="totalGamesPlayed" type="number" required placeholder="Number of Games Played">
+                <label for="result">Total Wins Needed</label>
+                <input id="result" type="number" readonly required>
+    
+                <button type="submit">Calculate</button>
+            </form>
+            <!-- <h1>Total Wins Needed: <span id="result"></span></h1> -->
+        </div>
+    </section>
+    
+   
+      <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-text">
+            <p>Copyright &copy; 2024 by Aromewell | All Rights Reserved</p>
+        </div>
+
+    </footer>
+</body>
+<script>
+    document.getElementById('winRateForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+        
+        // Get input values
+        var desiredWinRate = parseFloat(document.getElementById('desiredWinRate').value) / 100; // Convert to decimal
+        var currentWinRate = parseFloat(document.getElementById('currentWinRate').value) / 100; // Convert to decimal
+        var totalGamesPlayed = parseInt(document.getElementById('totalGamesPlayed').value);
+
+        // Calculate total wins needed
+        var currentWins = currentWinRate * totalGamesPlayed;
+        var x = 0; // Number of additional games needed, initialize to 0
+        var totalWinsNeeded = Math.ceil((desiredWinRate * (totalGamesPlayed + x) - currentWins) / (1 - desiredWinRate));
+
+        // Display result
+        document.getElementById('result').value = totalWinsNeeded;
+    });
+</script>
+</html>
